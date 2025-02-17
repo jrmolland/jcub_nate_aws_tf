@@ -23,7 +23,7 @@ data "aws_availability_zones" "available" {
 
 resource "aws_subnet" "private_subnet" {
   vpc_id            = aws_vpc.vpc.id
-  cidr_block        = "10.0.1.0/26"
+  cidr_block        = var.private_subnet_cidr
   availability_zone = data.aws_availability_zones.available.names[0]
 
   tags = {
@@ -33,7 +33,7 @@ resource "aws_subnet" "private_subnet" {
 
 resource "aws_subnet" "public_subnet" {
   vpc_id            = aws_vpc.vpc.id
-  cidr_block        = "10.0.2.0/26"
+  cidr_block        = var.public_subnet_cidr
   availability_zone = data.aws_availability_zones.available.names[0]
 
   tags = {
@@ -59,7 +59,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20250115"]
+    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
   }
 
   filter {
@@ -75,7 +75,7 @@ resource "aws_instance" "bastion_host" {
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.public_subnet.id
   vpc_security_group_ids = [aws_security_group.bastion_sg.id]
-  key_name      = aws_key_pair.bastion_key.id
+  key_name      = aws_key_pair.bastion_key.key_name
 
   tags = {
     Name = "Bastion Host"
@@ -114,6 +114,8 @@ resource "aws_eip" "nat_eip" {}
 resource "aws_nat_gateway" "ngw" {
   allocation_id = aws_eip.nat_eip.id
   subnet_id     = aws_subnet.public_subnet.id
+
+  depends_on = [aws_internet_gateway.igw]
 
   tags = {
     Name = "NAT Gateway"
@@ -168,7 +170,7 @@ resource "aws_security_group" "bastion_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["70.110.18.115/32", "68.80.7.165/32"]
+    cidr_blocks = var.trusted_ips
   }
 
   egress {

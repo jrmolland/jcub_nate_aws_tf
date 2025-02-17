@@ -1,0 +1,23 @@
+[33mcommit 0cf680d3126554db0013307d349dae71ae48734c[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: jcub <jcub@jcub.jcub>
+Date:   Sun Feb 16 18:19:14 2025 -0500
+
+    Remove .terraform directory from version control
+
+[33mcommit 8aaff28c8a23a21cefbd5535904297b17feea4ed[m
+Author: jcub <jcub@jcub.jcub>
+Date:   Sun Feb 16 18:14:00 2025 -0500
+
+    terraform code update for our app
+
+[33mcommit 50602be256fb18405cd6cae29f30afe8b2ff2c58[m
+Author: jcub <jcub@jcub.jcub>
+Date:   Sun Feb 16 17:46:22 2025 -0500
+
+    Remove large files and add to .gitignore
+
+[33mcommit 04ee21899e044b86738648059601b611c2acf6b7[m
+Author: jcub <jcub@jcub.jcub>
+Date:   Sun Feb 16 17:34:22 2025 -0500
+
+    terraform code update for my app
