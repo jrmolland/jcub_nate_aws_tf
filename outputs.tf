@@ -22,4 +22,5 @@ output "bastion_host_public_ip" {
 
 output "public_dns" {
   value = aws_instance.bastion_host.public_dns
+  depends_on = [aws_instance.bastion_host]
 }
