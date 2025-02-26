@@ -208,4 +208,3 @@ resource "aws_security_group" "app_host_sg" {
     Name = "App Host SG"
   }
 }
-# Comment left by jacob-io as another test
