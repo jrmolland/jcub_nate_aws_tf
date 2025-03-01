@@ -207,5 +207,4 @@ resource "aws_security_group" "app_host_sg" {
   tags = {
     Name = "App Host SG"
   }
-}  //This is a push test - GitHub from Nate
-//This is another comment
+}
