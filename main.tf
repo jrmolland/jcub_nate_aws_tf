@@ -94,6 +94,12 @@ resource "aws_instance" "app_host" {
   }
 }
 
+resource "aws_volume_attachment" "juice-shop-install-vol" {
+  device_name = "/dev/sda1"
+  instance_id = aws_instance.app_host.id
+  volume_id = "vol-06b5b9120762aa05d"
+}
+
 ## Assign EIP to the Bastion Host EC2
 resource "aws_eip" "bastion_eip" {
   instance = aws_instance.bastion_host.id
