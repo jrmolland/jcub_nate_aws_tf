@@ -1,5 +1,6 @@
 terraform {
-  backend "remote" {
+  
+  /*backend "remote" {
     hostname = "app.terraform.io"
     organization = "jcub"
     
@@ -7,17 +8,16 @@ terraform {
       name = "jcub_nate_prod"
     }
   }
-  
-  /*
+  */
+
   backend "s3" {
-    bucket = "jcub-nate-tfstate"
+    bucket = "jcub-nate-tf-state"
     key = "prod/terraform.tfstate"
     region = "us-east-1"
     encrypt = true
   }
-  */
 
-  required_version = "~> 1.11.1"
+  required_version = "> 1.10.5"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
