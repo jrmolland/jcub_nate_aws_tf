@@ -205,6 +205,15 @@ resource "aws_security_group" "app_host_sg" {
     cidr_blocks = ["${aws_instance.bastion_host.private_ip}/32"]
   }
 
+  # Allow the App Host EC2 to accept traffic from the Bastion Host EC2 on port 3000
+  ingress {
+    description = "Allow the Bastion Host instance to access the App Host instance on port 3000, so that an SSH tunnel can be created from App Host to Bastion Host to Local Machine"
+    from_port = 3000
+    to_port = 3000
+    protocol = "tcp"
+    cidr_blocks = ["${aws_instance.bastion_host.private_ip}/32"]
+  }
+  
   egress {
     description = "Allow all outbound traffic from the App Host EC2 instance"
     from_port   = 0

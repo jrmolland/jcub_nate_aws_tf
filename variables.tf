@@ -29,5 +29,5 @@ variable "public_subnet_cidr" {
 variable "trusted_ips" {
   type = list(string)
   description = "List of trusted IP addresses for SSH access"
-  default = [ "70.110.18.115/32", "68.80.7.165/32" ]
+  default = [ "70.110.18.115/32", "68.80.7.165/32"]
 }
