@@ -31,3 +31,6 @@ variable "trusted_ips" {
   description = "List of trusted IP addresses for SSH access"
   default = [ "70.110.18.115/32", "68.80.7.165/32"]
 }
+
+
+
